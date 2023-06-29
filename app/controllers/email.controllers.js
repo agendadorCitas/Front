@@ -69,7 +69,7 @@ export const save = (req, res) => {
             metodo = "put"
         };
 
-        let ruta = "http://localhost:3000/api/email";
+        let ruta = "http://localhost:3000/api/email" ;
         
         let option = {
             method: metodo,
@@ -134,14 +134,14 @@ export const emailDelete = async(req, res) => {
             req.cookies.ckeib,
             process.env.SECRET_KEY)
 
-            const url = `http://localhost:3000/api/email/${id}`;
+            const url = `${process.env.API}/api/email/${id}`;
             const option={
                 method:"DELETE"
             };
             const result =  await fetch(url, option)
             .then(response=>response.json())
             .then(data => {
-               if (data[0].affecteRows === 1){
+               if (data[0].affecteRows == 1){
                 console.log("borrado");
                }else{
                 console.log("no borro");
