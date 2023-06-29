@@ -11,7 +11,7 @@ passport.use(
     new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://front-production-f336.up.railway.app/auth/google"
+        callbackURL: process.env.GOOGLE_API
     },
         function (accessToken, refreshToken, profile, cb) {
           return cb(null, profile);

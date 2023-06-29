@@ -9,10 +9,11 @@ export const getEmail = async (req, res) => {
         try {
             const token = jwt.verify(req.cookies.ckeib, process.env.SECRET_KEY)
 
-            let ruta = "http://localhost:3000/api/email";
+            let ruta = `${process.env.API}/api/email`;
             let option = {
                 method: "GET"
             }
+
             let datos = {};
             const result = await fetch(ruta, option)
                 .then(response => response.json())
@@ -22,12 +23,22 @@ export const getEmail = async (req, res) => {
                 })
                 .catch(error => console.error("Error en peticion: " + error))
 
-
+                // datos.forEach((correos) => {
+                //     if(token.correo == correos.email){
+                //         let login = true;
+                //     } else {
+                //         let login = false
+                //     }
+                // })
+                // if(login = true){
+                    
+                // }
             res.render("dash", {
                 "nombre": token.nombre,
                 "foto": token.foto,
                 "menu": 1,
-                "datos": datos
+                "datos": datos,
+                "correo": token.correo
             });
 
         } catch (error) {
