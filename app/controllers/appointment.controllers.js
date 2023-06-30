@@ -124,7 +124,7 @@ export const saveAppointment = (req, res) => {
 };
 
 // Edita la información
-export const editAppointment = (req, res) => {
+export const editAppointment = async(req, res) => {
     const id = req.query.id;
     const cedula = req.query.cedula;
     const nombre = req.query.nombre;
@@ -150,6 +150,19 @@ export const editAppointment = (req, res) => {
         horaCita: horaCita,
         costoCita: costoCita
     };
+
+    let rutaSedes = `${process.env.API}/labApi/laboratory`
+
+    let option = {
+        method: "get"
+    };
+
+    const resultSedes = await fetch(rutaSedes, option)
+    .then(response => response.json())
+    .then(data => {
+        datos = data[0]
+    })
+    .catch(error => console.error("Error en peticion: " + error ));
 
     if (req.cookies.ckeib){
         try {
