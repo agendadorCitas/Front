@@ -3,7 +3,6 @@ import fetch from "node-fetch";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 
-
 dotenv.config()
 
 // Muestra todos los datos de las PQRS
@@ -12,7 +11,7 @@ export const getpqrs = async (req, res) => {
         try {
             const token = jwt.verify(req.cookies.ckeib, process.env.SECRET_KEY)
 
-            let ruta = "http://localhost:3000/PQRS/pqrs";
+            let ruta = `${process.env.API}/PQRS/pqrs`;
             let option = {
                 method: "GET"
             }
@@ -36,11 +35,11 @@ export const getpqrs = async (req, res) => {
         } catch (error) {
             res.redirect("/");
 
-        }
+        };
     } else {
         res.redirect("/")
-    }
-}
+    };
+};
 
 // Insertar información
 export const savePQRS = (req, res) => {
@@ -64,7 +63,7 @@ export const savePQRS = (req, res) => {
             metodo = "put"
         }
 
-        let ruta = "http://localhost:3000/PQRS/pqrs";
+        let ruta = `${process.env.API}/PQRS/pqrs`;
         let option = {
             method: metodo,
             headers: {
@@ -100,7 +99,7 @@ export const pqrsDelete = async(req, res) => {
             req.cookies.ckeib,
             process.env.SECRET_KEY);
 
-            const url = `http://localhost:3000/PQRS/pqrs/${id}`;
+            const url = `${process.env.API}/PQRS/pqrs/${id}`;
             
             const option={
                 method:"DELETE"

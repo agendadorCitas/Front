@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import axios from "axios";
 import PDFDocument from "pdfkit-table";
 import path from "path";
+import { log } from "console";
 
 // Muestra toda la información
 export const appointment = async(req, res) => {
@@ -11,12 +12,21 @@ export const appointment = async(req, res) => {
         try {
             const token = jwt.verify(req.cookies.ckeib, process.env.SECRET_KEY);
 
-            let ruta = "http://localhost:3000/appointment/viewAppointment";
+            let rutaSedes = `${process.env.API}/labApi/laboratory`
+            let ruta = `${process.env.API}/appointment/viewAppointment`;
             let option = {
                 method: "get"
             };
 
             let datos = {};
+            let datosSedes = {};
+
+            const resultSedes = await fetch(rutaSedes, option)
+            .then(response => response.json())
+            .then(data => {
+                datosSedes = data[0]
+            })
+            .catch(error => console.error("Error en peticion: " + error ));
 
             const result = await fetch(ruta, option)
             .then(response => response.json())
@@ -29,8 +39,8 @@ export const appointment = async(req, res) => {
                 "nombre" : token.nombre,
                 "foto": token.foto,
                 "menu" : 3,
-                "datos" : datos
-
+                "datos" : datos,
+                "datosSedes": datosSedes
              });
 
         } catch (error) {
@@ -84,7 +94,7 @@ export const saveAppointment = (req, res) => {
             metodo = "put";
         };
 
-        let ruta = "http://localhost:3000/appointment/saveAppointment";
+        let ruta = `${process.env.API}/appointment/saveAppointment`;
 
         let option = {
             method: metodo,
@@ -170,7 +180,7 @@ export const deleteAppointment = async(req, res) => {
             req.cookies.ckeib,
             process.env.SECRET_KEY);
 
-            const url = `http://localhost:3000/appointment/deleAppointment/${id}`;
+            const url = `${process.env.API}/appointment/deleAppointment/${id}`;
 
             const option={
                 method:"delete"
@@ -197,7 +207,7 @@ export const deleteAppointment = async(req, res) => {
 // Genera PDF con los datos de la tabla
 export const pdfGenerate = async (req, res) => {
     try {
-      const response = await axios.get('http://localhost:3000/appointment/viewAppointment');
+      const response = await axios.get( `${process.env.API}/appointment/viewAppointment`);
 
       const citaData = response.data[0]; 
   

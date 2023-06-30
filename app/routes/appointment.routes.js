@@ -2,7 +2,6 @@
 import { Router } from "express";
 import dotenv from "dotenv";
 import * as controllers from "../controllers/appointment.controllers.js";
-import { validateCreate } from "../validators/appointment.js";
 
 dotenv.config();
 
@@ -12,7 +11,7 @@ const dashAppointment = Router ();
 dashAppointment.get("/viewAppointment", controllers.appointment);
 
 // Ruta para insertar datos
-dashAppointment.post("/appointSave", validateCreate, controllers.saveAppointment);
+dashAppointment.post("/appointSave", controllers.saveAppointment);
 
 // Ruta para actualizar infromación
 dashAppointment.get("/editA", controllers.editAppointment);

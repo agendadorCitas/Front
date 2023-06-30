@@ -1,10 +1,13 @@
+// Modulos
 import { Router } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+
 dotenv.config();
 
 const loginRouter = Router();
 
+// Auth google
 loginRouter.get("/google", (req, res) => {
     const id = req.user.id;
     const name = req.user.displayName;
@@ -16,8 +19,6 @@ loginRouter.get("/google", (req, res) => {
         correo: email,
         foto: foto
     }
-
-    console.log (name)
 
     const token = jwt.sign
     (payload, 

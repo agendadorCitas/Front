@@ -1,11 +1,11 @@
+// Modulos
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const email = ['emancap12@gmail.com'];
-
+// Configuración google
 passport.use(
     "auth-google",
     new GoogleStrategy({
@@ -16,4 +16,4 @@ passport.use(
         function (accessToken, refreshToken, profile, cb) {
           return cb(null, profile);
         }
-    ));
+));

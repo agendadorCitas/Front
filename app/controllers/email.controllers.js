@@ -1,9 +1,11 @@
+// Modulos
 import fetch from "node-fetch";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 
 dotenv.config()
 
+// Muestra información
 export const getEmail = async (req, res) => {
     if (req.cookies.ckeib) {
         try {
@@ -19,20 +21,9 @@ export const getEmail = async (req, res) => {
                 .then(response => response.json())
                 .then(data => {
                     datos = data[0]
-                    //console.log(data[0]);
                 })
                 .catch(error => console.error("Error en peticion: " + error))
-
-                // datos.forEach((correos) => {
-                //     if(token.correo == correos.email){
-                //         let login = true;
-                //     } else {
-                //         let login = false
-                //     }
-                // })
-                // if(login = true){
-                    
-                // }
+                
             res.render("dash", {
                 "nombre": token.nombre,
                 "foto": token.foto,
@@ -49,7 +40,7 @@ export const getEmail = async (req, res) => {
         res.redirect("/")
     }
 }
-
+// Guardar información
 export const save = (req, res) => {
     if(req.body.email){
 
@@ -69,7 +60,7 @@ export const save = (req, res) => {
             metodo = "put"
         };
 
-        let ruta = "http://localhost:3000/api/email" ;
+        let ruta = `${process.env.API}/api/email`;
         
         let option = {
             method: metodo,
@@ -97,6 +88,7 @@ export const save = (req, res) => {
     }
 }
 
+// Editar correo
 export const emailEdit = (req, res)=>{
     const id = req.query.id;
     const email = req.query.email;
@@ -124,7 +116,7 @@ export const emailEdit = (req, res)=>{
 }
 }
 
-
+// Eliminar correos
 export const emailDelete = async(req, res) => {
     const id = req.query.id;
 
@@ -153,4 +145,3 @@ export const emailDelete = async(req, res) => {
     };
     };
 };
-

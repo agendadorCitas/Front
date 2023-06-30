@@ -1,15 +1,17 @@
+// Modulos
 import fetch from "node-fetch";
 import jwt from "jsonwebtoken";
 import axios from "axios";
 import PDFDocument from "pdfkit-table";
 import path from "path";
 
+// Muestra información
 export const viewLab = async (req, res) => {
     if (req.cookies.ckeib) {
         try {
             const token = jwt.verify(req.cookies.ckeib, process.env.SECRET_KEY)
 
-            let ruta = "http://localhost:3000/labApi/laboratory";
+            let ruta = `${process.env.API}/labApi/laboratory`;
             let option = {
                 method: "GET"
             }
@@ -31,15 +33,14 @@ export const viewLab = async (req, res) => {
             });
 
         } catch (error) {
-            // res.redirect("/");
-
-        }
+            res.redirect("/v1/inicio");
+        };
     } else {
-        // res.redirect("/")
-    }
-}
+        res.redirect("/v1/inicio")
+    };
+};
 
-// FALTA POR ARREGLAR
+// Guarda información
 export const saveLab = (req, res) => {
     if(req.body.laboratory){
 
@@ -56,7 +57,7 @@ export const saveLab = (req, res) => {
             metodo = "put"
         }
 
-        let ruta = "http://localhost:3000/labApi/laboratory";
+        let ruta = `${process.env.API}/labApi/laboratory`;
         let option = {
             method: metodo,
             headers: {
@@ -74,14 +75,15 @@ export const saveLab = (req, res) => {
             .catch(err => console.log("Error al consumir API: " + err))
             res.redirect("/viewlab/lab");
         } catch (error) {
-            
-        }
+            console.log("Ha ocurrido un error: " + error);
+        };
 
     }else{
         console.send("hay un error: ");
-    }
-}
+    };
+};
 
+// Editar laboratorio
 export const labEdit = (req, res)=>{
     const id = req.query.id;
     const laboratory = req.query.laboratory;
@@ -105,10 +107,11 @@ export const labEdit = (req, res)=>{
             })
         }catch(error){
             console.error("error con el token");
-    }
-}
-}
+    };
+};
+};
 
+// Eliminar laboratorios
 export const labDelete = async(req, res)=>{
     const id = req.query.id;
     if (req.cookies.ckeib){
@@ -117,7 +120,7 @@ export const labDelete = async(req, res)=>{
             req.cookies.ckeib,
             process.env.SECRET_KEY)
 
-            const url = `http://localhost:3000/labApi/laboratory/${id}`;
+            const url = `${process.env.API}/labApi/laboratory/${id}`;
             const option={
                 method:"DELETE"
             };
@@ -133,14 +136,15 @@ export const labDelete = async(req, res)=>{
             res.redirect("/viewLab/lab")
         }catch(error){
             console.error("error con el token");
-    }
-    }
-}
+    };
+    };
+};
 
+// Exporta el pdf
 export const pdfGenerate = async (req, res) => {
     try {
       // Hacer una solicitud GET a la API para obtener la información
-      const response = await axios.get('http://localhost:3000/labApi/laboratory');
+      const response = await axios.get( `${process.env.API}/labApi/laboratory`);
       const labData = response.data[0]; // Obtener el primer elemento del arreglo
   
       // Crear un nuevo documento PDF
@@ -199,4 +203,4 @@ export const pdfGenerate = async (req, res) => {
       console.error(error);
       res.status(500).send('Error al generar el PDF');
     }
-  };
+};
