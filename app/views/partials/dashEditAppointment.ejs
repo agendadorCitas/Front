@@ -82,9 +82,9 @@
                     <div class="input-group">
                         <span class="input-group-addon">Laboratorios</span>
                         <select class="form-control" name="idLab" id="idLab" value="<%= datos.idLab %>">
-                            <option value="16">Bucaramanga</option>
-                            <option value="19">Medellin</option>
-                            <!-- <option value="6">Sede Chile</option> -->
+                            <% datosSedes.forEach((datos)=>{ %>
+                            <option value="<%= datos.id %>"><%= datos.laboratory %></option>
+                            <%})%>
                         </select>
                     </div>
 
