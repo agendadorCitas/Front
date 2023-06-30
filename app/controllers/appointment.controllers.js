@@ -152,12 +152,20 @@ export const editAppointment = async(req, res) => {
     };
 
     let rutaSedes = `${process.env.API}/labApi/laboratory`
+    let ruta = `${process.env.API}/appointment/viewAppointment`;
 
     let option = {
         method: "get"
     };
 
     const resultSedes = await fetch(rutaSedes, option)
+    .then(response => response.json())
+    .then(data => {
+        datos = data[0]
+    })
+    .catch(error => console.error("Error en peticion: " + error ));
+
+    const result = await fetch(ruta, option)
     .then(response => response.json())
     .then(data => {
         datos = data[0]
