@@ -41,6 +41,10 @@
                   aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
                   Cedula
                 </th>
+                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                  aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
+                  Cedula
+                </th>
                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
                   aria-label="Browser: activate to sort column ascending">
                   Nombre
@@ -87,6 +91,9 @@
             <tbody>
               <% datos.forEach((elements)=> { %>
                 <tr role="row" class="odd">
+                  <td style="word-wrap: break-word;">
+                    <%= elements.id %>
+                  </td>
                   <td style="word-wrap: break-word;">
                     <%= elements.cedula %>
                   </td>
