@@ -30,9 +30,9 @@ _dotenv["default"].config();
 var app = (0, _express["default"])();
 
 // Por si __dirname no funciona
-// var _filename = url.fileURLToPath(import.meta.url);
-// var _dirname = url.fileURLToPath(new URL('.', import.meta.url));
-// app.set("views", _path["default"].join(_dirname, "views"));
+var _filename = url.fileURLToPath(import.meta.url);
+var _dirname = url.fileURLToPath(new URL('.', import.meta.url));
+app.set("views", _path["default"].join(_dirname, "views"));
 
 // Asignacion de plantilla ejs
 app.set("view engine", "ejs");
