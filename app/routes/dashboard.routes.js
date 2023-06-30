@@ -24,13 +24,11 @@ dash.get("/inicio", async (req, res) => {
                 .then(response => response.json())
                 .then(data => {
                     datos = data[0]
-                    console.log(datos);
                 })
                 .catch(error => console.error("Error en peticion: " + error))
 
             let login = false;
             datos.forEach((correos) => {
-                console.log(correos.email);
                 if (token.correo == correos.email) {
 
                     login = true;
