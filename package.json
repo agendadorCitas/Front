@@ -2,11 +2,11 @@
   "name": "practica-front",
   "version": "1.0.0",
   "description": "",
-  "main": "app/index.js",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon app/index.js",
-    "start2": "nodemon app/index.js",
-    "start": "node dist/index.js",
+    "start": "nodemon app/index.js",
     "build": "babel app --out-dir dist"
   },
   "keywords": [],
@@ -29,11 +29,6 @@
     "pdfkit-table": "^0.1.99"
   },
   "devDependencies": {
-    "@babel/cli": "^7.22.5",
-    "@babel/core": "^7.22.5",
-    "@babel/node": "^7.22.5",
-    "@babel/plugin-transform-runtime": "^7.22.5",
-    "@babel/preset-env": "^7.22.5",
     "nodemon": "^2.0.22"
   }
 }
