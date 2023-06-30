@@ -108,7 +108,7 @@ export const pqrsDelete = async(req, res) => {
             const result =  await fetch(url, option)
             .then(res => res.json())
             .then(data => {
-               if (data.affecteRows == 1){
+               if (data[0].affecteRows == 1){
                 console.log("Borrado");
                }else{
                 console.log("No borro");
