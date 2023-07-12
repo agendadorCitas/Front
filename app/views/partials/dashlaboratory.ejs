@@ -17,7 +17,7 @@
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title">
-  
+            <!-- Boton agregar nuevo registro -->
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
               Registrar laboratorio
             </button>
@@ -32,7 +32,9 @@
           </div>
         </div>
         <div class="box-body">
-          <div class="col-sm-12"><table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+          <div class="col-sm-12">
+            <!-- Tabla que muestra la informacion -->
+            <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
             <thead>
             <tr role="row">
             <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
@@ -52,21 +54,22 @@
               <td><%= elements.id %></td>
               <td><%= elements.laboratory %></td>
               <td>
+                <!-- Boton editar -->
                 <a href="editLab?id=<%= elements.id %>&laboratory=<%= elements.laboratory %>" class="btn btn-warning">
                   <i class="fa fa-edit"></i>
                 </a>
-  
+                  <!-- Boton eliminar -->
                   <a
                    class="btn btn-danger" onclick="confirmarLab(`<%=elements.id %>`);">
                   <i class="fa fa-trash"></i>
                   </a>
-                  <button>bacerra</button>
               </td>
               
             </tr>
             <% }) %>
             
           </table>
+          <!-- Generar pdf -->
           <form action="generatePdf" method="post">
             <input type="hidden" name="datos">
             <label for="formato">Generar reporte</label>
@@ -82,6 +85,7 @@
     <div class="modal modal-info fade" id="modal-info">
       <div class="modal-dialog">
         <div class="modal-content">
+          <!-- Guardar -->
           <form name="formularioLab" id="formularioLab" action="labeSave" method="POST">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -95,7 +99,9 @@
             </div>
           </div>
           <div class="modal-footer">
+            <!-- Boton cancelar -->
             <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
+            <!-- Boton guardar -->
             <button onclick="addLab()" type="submit" class="btn btn-outline">Guardar</button>
           </div>
         </form>
@@ -106,6 +112,7 @@
     </div>
   </div>
   <script>
+  //Alerta de eliminar
     function confirmarLab (id){
       Swal.fire({
   title: '¿Estas completamente seguro?',
@@ -125,7 +132,7 @@
   }
   })
   }
-
+//Alerta guardar informacion
 function addLab() {
   const form = document.querySelector("#formularioLab");
     form.addEventListener("submit", event => {
@@ -147,4 +154,4 @@ function addLab() {
       })
       })
       }
-  </script>
+</script>

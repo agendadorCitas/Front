@@ -19,6 +19,7 @@
 
 
             <div class="box-body">
+                <!-- Formulario editar correo -->
                 <form name="formulario" id="formulario" action="saveEmail" method="post">
                     <div class="form-group has-success">
                         <label>ID</label>
@@ -32,9 +33,11 @@
                             placeholder="Usuario">
                     </div>
                     <div class="box-footer">
+                        <!-- Boton actualizar inofrmacion -->
                         <button class="btn btn-app" type="submit" onclick="actualizar()"></a>
                             <i class="fa fa-save"></i> Guardar
                         </button>
+                        <!-- Boton cancelar -->
                         <a href="/viewEmail/email" class="btn btn-app">
                             <i class="fa fa-times"></i>
                             cancelar
@@ -43,6 +46,7 @@
                 </form>
             </div>
             <script>
+                //Alerta confirmar actualizar
                 function actualizar() {
                     const form = document.querySelector("#formulario");
                     form.addEventListener("submit", event => {

@@ -50,7 +50,6 @@ export const appointment = async(req, res) => {
 }else{
     res.redirect("/");
 };
-
 };
 
 // Inserta información

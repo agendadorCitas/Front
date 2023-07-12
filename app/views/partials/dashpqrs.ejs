@@ -12,7 +12,7 @@
     <div class="box">
       <div class="box-header with-border">
         <h3 class="box-title">
-
+          <!-- Boton registrar nueva PQRS -->
           <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
             Registrar PQRS
           </button>
@@ -33,6 +33,8 @@
     <div class="box">
       <div class="box-body">
         <div class="col-sm-12">
+
+          <!-- Tabla que muestra la informacion -->
           <table id="example2" style="table-layout: fixed;" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
             <thead>
             <tr role="row">
@@ -61,6 +63,7 @@
             <td style="word-wrap: break-word;"><%= elements.nombre_completo %></td>
             <td style="word-wrap: break-word;"><%= elements.descripcion %></td>
             <td>
+              <!-- Boton eliminar -->
                 <a
                  class="btn btn-danger" onclick="confirmarpqrs(`<%= elements.id %>`);">
                 <i class="fa fa-trash"></i>
@@ -69,13 +72,15 @@
           </tr>
           <% }) %>
           
-        </table></div>
+        </table>
+      </div>
       </div>
   
   </section>
   <div class="modal modal-info fade" id="modal-info">
     <div class="modal-dialog">
       <div class="modal-content">
+        <!-- Formulario para guardar la informacion -->
         <form name="formularioPQRS" id="formularioPQRS" action="pqrsSave" method="POST">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -97,7 +102,9 @@
           </div>
         </div>
         <div class="modal-footer">
+          <!-- Boton cancelar -->
           <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
+          <!-- Boton guardar -->
           <button onclick="addPQRS()" type="submit" class="btn btn-outline">Guardar</button>
         </div>
       </form>
@@ -106,6 +113,7 @@
   </div>
 </div>
 <script>
+//Alerta eliminar informacion
   function confirmarpqrs (id){
     Swal.fire({
 title: '¿Estas completamente seguro?',
@@ -125,7 +133,7 @@ if (result.isConfirmed) {
 }
 })
 }
-
+//Alerta guardar informacion
 function addPQRS() {
   const form = document.querySelector("#formularioPQRS");
     form.addEventListener("submit", event => {

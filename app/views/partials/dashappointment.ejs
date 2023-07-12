@@ -18,7 +18,7 @@
     <div class="box">
       <div class="box-header with-border">
         <h3 class="box-title">
-
+          <!-- Boton de nuevo registro -->
           <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
             Nuevo registro
           </button>
@@ -29,10 +29,12 @@
             <i class="fa fa-minus"></i></button>
           <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
             <i class="fa fa-times"></i></button>
-        </div>
       </div>
+    </div>
+
       <div class="box-body">
         <div class="col-sm-12">
+          <!-- Tabla donde se muestra la informacion -->
           <table id="example2" style="table-layout: fixed;" class="table table-bordered table-hover dataTable" role="grid"
             aria-describedby="example2_info">
             <thead>
@@ -130,6 +132,7 @@
                 <% }) %>
 
           </table>
+          <!-- Generar informe PDF -->
           <form action="generatePdf" method="post">
             <input type="hidden" name="datos">
             <label for="formato">Generar reporte</label>
@@ -145,6 +148,7 @@
   <div class="modal modal-info fade" id="modal-info">
     <div class="modal-dialog">
       <div class="modal-content">
+        <!-- Formulario para guardar una cita -->
         <form action="appointSave" name="formAppointment" id="formAppointment" method="post">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -230,10 +234,11 @@
   </div>
   
 </div>
-
+<!-- Archivos donde se realizan las validaciones -->
 <script src="/resources/js/validaciones.js"></script>
 
 <script>
+  //Alerta para borrar informacio
   function deleteA(id) {
     Swal.fire({
       title: 'Estas completamente seguro?',
@@ -255,6 +260,7 @@
     })
   }
 
+//Alerta para insertar informacion
   function addAppointment() {
   const form = document.querySelector("#formAppointment");
     form.addEventListener("submit", event => {

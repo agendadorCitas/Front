@@ -28,7 +28,8 @@
                 </div>
     
             <div class="box-body">
-                <form name="formAppo" id="formAppo"" action="appointSave" method="post">
+                <!-- Formulario para guardar la informacion que se va a editar -->
+                <form name="formAppo" id="formAppo" action="appointSave" method="post">
                     
                     <div class="form-group has-success">
                         <label>Id</label>
@@ -112,9 +113,11 @@
                     <br>
 
                     <div class="box-footer">
+                        <!-- Boton guardar -->
                         <button class="btn btn-app" type="submit" onclick="confirmar()"></a>
                             <i class="fa fa-save"></i> Guardar
                         </button>
+                        <!-- Boton cancelar -->
                         <a href="/viewA/viewAppointment" class="btn btn-app">
                             <i class="fa fa-times"></i> cancelar
                         </a>

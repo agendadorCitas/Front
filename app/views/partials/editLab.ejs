@@ -21,6 +21,7 @@
         <!-- Default box -->
     <div class="box">
             <div class="box-body">
+                <!-- Formulario editar laboratorio -->
                 <form name="formularioLab" id="formularioLab" action="labeSave" method="post">
                     <div class="form-group has-success">
                         <label>ID</label>
@@ -34,9 +35,11 @@
                             placeholder="Usuario">
                     </div>
                     <div class="box-footer">
+                        <!-- Boton guardar -->
                         <button class="btn btn-app" type="submit" onclick="actualizarLab()"></a>
                             <i class="fa fa-save"></i> Guardar
                         </button>
+                        <!-- Boton cancelar -->
                         <a href="/viewlab/lab" class="btn btn-app">
                             <i class="fa fa-times"></i>
                             cancelar
@@ -46,6 +49,7 @@
             </div>
     </div>
             <script>
+                //ALERTA CONFIRMAR ACTUALIZACION DE DATOS
                 function actualizarLab() {
                     const form = document.querySelector("#formularioLab");
                     form.addEventListener("submit", event => {

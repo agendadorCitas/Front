@@ -17,10 +17,11 @@
     <div class="box">
       <div class="box-header with-border">
         <h3 class="box-title">
-
+          <!-- Botton registrar nuevo correo -->
           <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
             Registrar nuevo correo
           </button>
+
         </h3>
 
         <div class="box-tools pull-right">
@@ -32,7 +33,9 @@
         </div>
       </div>
       <div class="box-body">
-        <div class="col-sm-12"><table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+        <div class="col-sm-12">
+          <!-- Tabla donde se muestra la informacion -->
+          <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
           <thead>
           <tr role="row">
           <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
@@ -52,10 +55,11 @@
             <td><%= elements.id %></td>
             <td><%= elements.email %></td>
             <td>
+              <!-- Boton para editar  -->
               <a href="editEmail?id=<%= elements.id %>&email=<%= elements.email %>" class="btn btn-warning">
                 <i class="fa fa-edit"></i>
               </a>
-
+              <!-- Boton para eliminar informacion -->
                 <a
                  class="btn btn-danger" onclick="confirmar(`<%=elements.id %>`);">
                 <i class="fa fa-trash"></i>
@@ -66,7 +70,8 @@
           </tr>
           <% }) %>
           
-        </table></div>
+        </table>
+      </div>
       </div>
       <!-- /.box-body -->
   
@@ -74,6 +79,7 @@
   <div class="modal modal-info fade" id="modal-info">
     <div class="modal-dialog">
       <div class="modal-content">
+        <!-- Guardar informacion -->
         <form name="formulario" id="formulario" action="saveEmail" method="POST">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -87,7 +93,9 @@
           </div>
         </div>
         <div class="modal-footer">
+          <!-- Boton de cancelar -->
           <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
+          <!-- Boton guardar -->
           <button onclick="add()" type="submit" class="btn btn-outline">Guardar</button>
         </div>
       </form>
@@ -98,6 +106,7 @@
   </div>
 </div>
 <script>
+  //Alerta eliminar informacion
   function confirmar (id){
     Swal.fire({
 title: 'Estas completamente seguro?',
@@ -118,7 +127,7 @@ if (result.isConfirmed) {
 }
 })
 }
-
+//Alerta guardar informacion
 function add() {
   const form = document.querySelector("#formulario");
     form.addEventListener("submit", event => {
