@@ -4,6 +4,7 @@
         <h1>
             Editar la cita
         </h1>
+            
         <ol class="breadcrumb">
             <li>
                 <a href="/v1/inicio"><i class="fa fa-home"></i>Home</a>
@@ -13,10 +14,8 @@
     
     <!-- Contenido principal -->
     <section class="content">
-    
-    
         <div class="box">
-            
+                <!-- Botones de colapsar y eliminar -->
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                         title="Collapse"><i class="fa fa-minus"></i>
@@ -26,56 +25,69 @@
                         <i class="fa fa-times"></i>
                     </button>
                 </div>
-    
             <div class="box-body">
                 <!-- Formulario para guardar la informacion que se va a editar -->
                 <form name="formAppo" id="formAppo" action="appointSave" method="post">
                     
                     <div class="form-group has-success">
                         <label>Id</label>
+                        
                         <input type="text" class="form-control" value="<%= datos.id %>" name="id" readonly>
+                       
                     </div>
     
                     <div class="input-group">
                         <span class="input-group-addon">Cedula</span>
+                        
                         <input type="number" class="form-control" value="<%= datos.cedula %>" name="cedula" placeholder="Cedula">
+                        
                     </div>
 
                     <br>
 
                     <div class="input-group">
                         <span class="input-group-addon">Nombre</span>
+                        
                         <input type="text" class="form-control" value="<%= datos.nombre %>" name="nombre"
                             placeholder="Nombre">
+                        
                     </div>
 
                     <br>
 
                     <div class="input-group">
                         <span class="input-group-addon">Apellido</span>
+                        
                         <input type="text" class="form-control" value="<%= datos.apellido %>" name="apellido"
                             placeholder="Apellido">
+                           
                     </div>
 
                     <br>
 
                     <div class="input-group">
                         <span class="input-group-addon">Telefono</span>
+                        
                         <input type="text" class="form-control" value="<%= datos.telefono %>" name="telefono" placeholder="Telefono">
+                        
                     </div>
 
                     <br>
                     
                     <div class="input-group">
                         <span class="input-group-addon">Direccion</span>
+                        
                         <input type="text" class="form-control" value="<%= datos.direccion %>" name="direccion" placeholder="Direccion">
+                        
                     </div>
 
                     <br>
 
                     <div class="input-group">
                         <span class="input-group-addon">Correo</span>
+                        
                         <input type="text" class="form-control" value="<%= datos.correo %>" name="correo" placeholder="Correo">
+                        
                     </div>
 
                     <br>
@@ -83,45 +95,47 @@
                     <div class="input-group">
                         <span class="input-group-addon">Laboratorios</span>
                         <select class="form-control" name="idLab" id="idLab">
-                            
-                                <option value="1">lab</option>
-                            
-                        </select>
+                            <% datosSedes.forEach((datos)=>{ %>
+                             <option value="<%= datos.id %>"><%= datos.laboratory %></option>
+                            <% }) %>
+                           </select>
                     </div>
 
                     <br>
 
                     <div class="input-group">
                         <span class="input-group-addon">Fecha</span>
+                        
                         <input type="text" class="form-control" value="<%= datos.fecha %>" name="fecha" placeholder="Fecha">
+                        
                     </div>
 
                     <br>
 
                     <div class="input-group">
                         <span class="input-group-addon">Hora cita</span>
+                        
                         <input type="text" class="form-control" value="<%= datos.horaCita %>" name="horaCita" placeholder="Hora cita">
+                        
                     </div>
 
                     <br>
 
                     <div class="input-group">
                         <span class="input-group-addon">Costo cita</span>
+                        
                         <input type="text" class="form-control" value="<%= datos.costoCita %>" name="costoCita" placeholder="Costo cita">
+                       
                     </div>
-
                     <br>
-
-                    <div class="box-footer">
-                        <!-- Boton guardar -->
-                        <button class="btn btn-app" type="submit" onclick="confirmar()"></a>
-                            <i class="fa fa-save"></i> Guardar
-                        </button>
-                        <!-- Boton cancelar -->
-                        <a href="/viewA/viewAppointment" class="btn btn-app">
-                            <i class="fa fa-times"></i> cancelar
-                        </a>
-                    </div>
+                    <!-- Boton guardar -->
+                    <button class="btn btn-success" type="submit" onclick="confirmar()"></a>
+                        <i class="fa fa-save"></i> Guardar
+                    </button>
+                    <!-- Boton cancelar -->
+                    <a href="/viewA/viewAppointment" class="btn btn-danger">
+                        <i class="fa fa-times"></i> cancelar
+                    </a>
                 </form>
             </div>
             <script>

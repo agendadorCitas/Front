@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 import axios from "axios";
 import PDFDocument from "pdfkit-table";
 import path from "path";
-import { log } from "console";
 
 // Muestra toda la información
 export const appointment = async(req, res) => {
@@ -150,26 +149,20 @@ export const editAppointment = async(req, res) => {
         costoCita: costoCita
     };
 
-    // let rutaSedes = `${process.env.API}/labApi/laboratory`
-    // let ruta = `${process.env.API}/appointment/viewAppointment`;
+    let datosSedes = {};
 
-    // let option = {
-    //     method: "get"
-    // };
+    let rutaSedes = `${process.env.API}/labApi/laboratory`
 
-    // const resultSedes = await fetch(rutaSedes, option)
-    // .then(response => response.json())
-    // .then(data => {
-    //     datos = data[0]
-    // })
-    // .catch(error => console.error("Error en peticion: " + error ));
+    let option = {
+        method: "get"
+    };
 
-    // const result = await fetch(ruta, option)
-    // .then(response => response.json())
-    // .then(data => {
-    //     datos = data[0]
-    // })
-    // .catch(error => console.error("Error en peticion: " + error ));
+    const resultSedes = await fetch(rutaSedes, option)
+    .then(response => response.json())
+    .then(data => {
+        datosSedes = data[0]
+    })
+    .catch(error => console.error("Error en peticion: " + error ));
 
     if (req.cookies.ckeib){
         try {
@@ -181,7 +174,8 @@ export const editAppointment = async(req, res) => {
                 "nombre" : token.nombre,
                 "foto" : token.foto,
                 "menu" : 7,
-                "datos" : datos
+                "datos" : datos,
+                "datosSedes": datosSedes
             });
 
         }catch(error){
@@ -288,7 +282,8 @@ export const pdfGenerate = async (req, res) => {
       doc.moveDown(2)
 
       // Agrega el pie de página
-      const generador = 'Agendador de citas software';
+      const token = jwt.verify(req.cookies.ckeib, process.env.SECRET_KEY);
+      const generador = token.nombre;
       const fechaImpresion = new Date().toLocaleString();
       doc.fontSize(10).text(`Generado por: ${generador}`);
       doc.fontSize(10).text(`Fecha y hora de impresión: ${fechaImpresion}`, { align: 'right' });
